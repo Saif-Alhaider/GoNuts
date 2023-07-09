@@ -2,7 +2,6 @@ package com.example.gonuts.ui.theme
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.graphics.Color
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -31,24 +30,26 @@ private val LightColorScheme = lightColorScheme(
     onPrimary = Primary600,
     onPrimaryContainer = Primary300,
     background = BackgroundLight,
-    onBackground = onBackground60Light
+    onBackground = onBackground60Light,
 )
 private val onDarkCustomColorsPalette = CustomColorsPalette(
     primary = Primary700,
     onPrimary = Primary600,
-    onPrimaryContainer = Primary300,
+    primaryBackground = Primary300,
     background = BackgroundDark,
     onBackground = onBackgroundDark,
-    onBackground60 = onBackground60Dark
+    onBackground60 = onBackground60Dark,
+    subtitle = Subtitle
 )
 
 private val onLightCustomColorsPalette = CustomColorsPalette(
     primary = Primary700,
     onPrimary = Primary600,
-    onPrimaryContainer = Primary300,
+    primaryBackground = Primary300,
     background = BackgroundLight,
     onBackground = onBackgroundLight,
-    onBackground60 = onBackground60Light
+    onBackground60 = onBackground60Light,
+    subtitle = Subtitle
 )
 
 @SuppressLint("CompositionLocalNaming")
@@ -74,7 +75,6 @@ fun GoNutsTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = Color.TRANSPARENT
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
