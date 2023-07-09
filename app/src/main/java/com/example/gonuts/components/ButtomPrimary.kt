@@ -30,7 +30,7 @@ fun ButtonPrimary(modifier: Modifier = Modifier, onClick: () -> Unit = {}, text:
             style = MaterialTheme.typography.labelMedium,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 12.dp)
+                .padding(vertical = 8.dp)
         )
     }
 }
