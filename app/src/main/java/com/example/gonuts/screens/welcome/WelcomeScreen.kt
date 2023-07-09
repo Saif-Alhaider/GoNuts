@@ -18,13 +18,13 @@ fun WelcomeContent() {
     systemUiController.setStatusBarColor(
         color = GoNutsCustomColors.current.primaryBackground,
     )
-    systemUiController.setNavigationBarColor(color = GoNutsCustomColors.current.primaryBackground,)
+    systemUiController.setNavigationBarColor(color = GoNutsCustomColors.current.primaryBackground)
     Box(
         modifier = Modifier
             .background(color = GoNutsCustomColors.current.primaryBackground)
             .fillMaxSize()
     ) {
-        Header()
+        Header(modifier = Modifier.fillMaxHeight(.4f))
         WelcomeBody(
             modifier = Modifier
                 .fillMaxHeight(.6f)

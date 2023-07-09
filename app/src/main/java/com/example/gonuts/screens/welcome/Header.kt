@@ -11,22 +11,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.gonuts.R
 
 @Composable
-fun Header() {
+fun Header(modifier: Modifier=Modifier) {
     Box(
-        Modifier
+        modifier
             .fillMaxWidth()
-            .fillMaxHeight(.4f)
     ) {
         Image(
             painter = painterResource(id = R.drawable.doughnut_group),
             contentDescription = "group of doughnut",
             modifier = Modifier
                 .matchParentSize()
-                .scale(1.5f)
+                .scale(1.6f,1.5f)
                 .rotate(16.18f)
                 .offset(y = 20.dp, x = 20.dp)
         )
@@ -37,6 +37,7 @@ fun Header() {
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .offset(x = 90.dp, y = 160.dp)
+                .scale(.9f)
         )
         Image(
             painter = painterResource(id = R.drawable.doughnut_strawberry_sprinkles_drizzle),
@@ -65,4 +66,10 @@ fun Header() {
                 .offset(x = (-25).dp, y = (-50).dp)
         )
     }
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun HeaderPreview() {
+    Header()
 }
