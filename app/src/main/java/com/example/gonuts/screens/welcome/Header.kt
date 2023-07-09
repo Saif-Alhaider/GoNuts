@@ -44,8 +44,8 @@ fun Header(modifier: Modifier=Modifier) {
             contentDescription = "doughnut strawberry sprinkles drizzle",
             modifier = Modifier
                 .align(Alignment.TopEnd)
-                .offset(x = (-55).dp, y = (-10).dp)
-                .scale(.65f)
+                .offset(x = (-40).dp, y = (-15).dp)
+                .scale(.85f)
         )
 
         Image(
