@@ -1,5 +1,6 @@
 package com.example.gonuts.ui.theme
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Color
 import android.os.Build
@@ -10,32 +11,48 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Primary700,
+    onPrimary = Primary600,
+    onPrimaryContainer = Primary300,
+    background = BackgroundDark,
+    onBackground = onBackground60Dark
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = Primary700,
+    onPrimary = Primary600,
+    onPrimaryContainer = Primary300,
+    background = BackgroundLight,
+    onBackground = onBackground60Light
 )
+private val onDarkCustomColorsPalette = CustomColorsPalette(
+    primary = Primary700,
+    onPrimary = Primary600,
+    onPrimaryContainer = Primary300,
+    background = BackgroundDark,
+    onBackground = onBackgroundDark,
+    onBackground60 = onBackground60Dark
+)
+
+private val onLightCustomColorsPalette = CustomColorsPalette(
+    primary = Primary700,
+    onPrimary = Primary600,
+    onPrimaryContainer = Primary300,
+    background = BackgroundLight,
+    onBackground = onBackgroundLight,
+    onBackground60 = onBackground60Light
+)
+
+@SuppressLint("CompositionLocalNaming")
+val GoNutsCustomColors = staticCompositionLocalOf { CustomColorsPalette() }
 
 @Composable
 fun GoNutsTheme(
@@ -62,9 +79,19 @@ fun GoNutsTheme(
         }
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+    val customColorsPalette =
+        if (darkTheme) onDarkCustomColorsPalette
+        else onLightCustomColorsPalette
+
+    CompositionLocalProvider(
+        GoNutsCustomColors provides customColorsPalette
+    ) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography,
+            content = content
+        )
+    }
+
 }
+
