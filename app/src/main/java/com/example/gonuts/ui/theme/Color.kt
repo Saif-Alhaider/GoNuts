@@ -7,6 +7,8 @@ val Primary700 = Color(0xFFFF7074)
 val Primary600 = Color(0xFFFF9494)
 val Primary300 = Color(0xFFFED8DF)
 
+val Subtitle = Color(0xFFFF9494)
+
 val BackgroundLight = Color.White
 val BackgroundDark = Color.Black
 
@@ -20,7 +22,8 @@ val onBackground60Dark = Color.White.copy(alpha = .6f)
 data class CustomColorsPalette(
     val primary: Color = Color.Unspecified,
     val onPrimary: Color = Color.Unspecified,
-    val onPrimaryContainer: Color = Color.Unspecified,
+    val primaryBackground: androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color.Unspecified,
+    val subtitle: Color = Color.Unspecified,
     val background: Color = Color.Unspecified,
     val onBackground: Color = Color.Unspecified,
     val onBackground60: Color = Color.Unspecified,
