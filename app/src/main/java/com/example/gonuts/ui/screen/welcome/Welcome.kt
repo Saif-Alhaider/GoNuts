@@ -1,4 +1,4 @@
-package com.example.gonuts.screens.welcome
+package com.example.gonuts.ui.screen.welcome
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
