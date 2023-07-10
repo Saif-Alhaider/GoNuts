@@ -1,4 +1,4 @@
-package com.example.gonuts.ui.viewmodel.common.state
+package com.example.gonuts.ui.common.state
 
 import androidx.annotation.DrawableRes
 

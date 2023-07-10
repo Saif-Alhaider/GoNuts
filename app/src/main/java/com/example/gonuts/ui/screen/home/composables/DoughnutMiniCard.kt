@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.example.gonuts.R
 import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.theme.GoNutsTheme
-import com.example.gonuts.ui.viewmodel.common.state.DoughnutUiState
+import com.example.gonuts.ui.common.state.DoughnutUiState
 
 @Composable
 fun DoughnutMiniCard(doughnut: DoughnutUiState, modifier: Modifier = Modifier) {
