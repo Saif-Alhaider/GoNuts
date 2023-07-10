@@ -1,4 +1,4 @@
-package com.example.gonuts.ui.viewmodel.home
+package com.example.gonuts.ui.screen.home
 
 import androidx.lifecycle.ViewModel
 import com.example.gonuts.usecase.GetDoughnutsUseCase
