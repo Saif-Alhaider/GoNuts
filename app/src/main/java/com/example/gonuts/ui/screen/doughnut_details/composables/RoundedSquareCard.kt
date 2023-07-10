@@ -13,14 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
 fun RoundedSquareCard(
-    onClick: () -> Unit = {},
+    onClick: (() -> Unit)? = null,
     color: Color,
     content: @Composable () -> Unit
 ) {
@@ -28,7 +27,7 @@ fun RoundedSquareCard(
         Modifier
             .size(45.dp)
             .clip(RoundedCornerShape(32))
-            .clickable(onClick = onClick)
+            .clickable(enabled = onClick != null, onClick = onClick ?: {})
             .background(color)
             .shadow(
                 elevation = 4.dp,
