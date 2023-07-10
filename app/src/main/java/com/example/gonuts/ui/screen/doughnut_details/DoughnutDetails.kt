@@ -41,7 +41,7 @@ fun DoughnutDetailsContent() {
         //region upper
         Column(
             Modifier
-                .background(GoNutsCustomColors.current.onPrimaryContainer)
+                .background(GoNutsCustomColors.current.subtitle)
                 .fillMaxWidth()
                 .fillMaxHeight(.5f),
             verticalArrangement = Arrangement.Center,
