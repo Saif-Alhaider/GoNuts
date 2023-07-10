@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.common.state.DoughnutUiState
+import com.example.gonuts.ui.theme.GoNutsCustomColors
 
 @Composable
 fun DoughnutSection(

@@ -18,10 +18,10 @@ val onBackground60Dark = Color.White.copy(alpha = .6f)
 
 @Immutable
 data class CustomColorsPalette(
-    val primary: androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color.Unspecified,
-    val onPrimary: androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color.Unspecified,
-    val onPrimaryContainer: androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color.Unspecified,
-    val background: androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color.Unspecified,
-    val onBackground: androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color.Unspecified,
-    val onBackground60: androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color.Unspecified,
+    val primary: Color = Color.Unspecified,
+    val onPrimary: Color = Color.Unspecified,
+    val onPrimaryContainer: Color = Color.Unspecified,
+    val background: Color = Color.Unspecified,
+    val onBackground: Color = Color.Unspecified,
+    val onBackground60: Color = Color.Unspecified,
 )

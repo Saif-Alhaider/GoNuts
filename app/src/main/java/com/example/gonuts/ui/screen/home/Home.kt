@@ -49,7 +49,9 @@ fun HomeContent(state: HomeUiState) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(top = 64.dp, start = 32.dp, end = 32.dp).fillMaxWidth()
+                modifier = Modifier
+                    .padding(top = 64.dp, start = 32.dp, end = 32.dp)
+                    .fillMaxWidth()
             ) {
                 //region info
                 Column {
@@ -100,7 +102,7 @@ fun HomeContent(state: HomeUiState) {
                 sectionTitle = "Donuts",
                 spaceByValue = 23.dp,
                 contentPadding = PaddingValues(start = 32.dp, end = 32.dp)
-            ){
+            ) {
                 DoughnutMiniCard(doughnut = it, modifier = Modifier.padding(top = 20.dp))
             }
         }

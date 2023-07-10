@@ -24,9 +24,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.gonuts.R
+import com.example.gonuts.ui.common.state.DoughnutUiState
 import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.theme.GoNutsTheme
-import com.example.gonuts.ui.common.state.DoughnutUiState
 
 @Composable
 fun DoughnutMiniCard(doughnut: DoughnutUiState, modifier: Modifier = Modifier) {
@@ -64,7 +64,9 @@ fun DoughnutMiniCard(doughnut: DoughnutUiState, modifier: Modifier = Modifier) {
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.labelSmall,
                 color = GoNutsCustomColors.current.primary,
-                modifier = Modifier.fillMaxWidth().padding(bottom = 20.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp)
             )
         }
         //endregion
@@ -77,7 +79,8 @@ fun DoughnutMiniCard(doughnut: DoughnutUiState, modifier: Modifier = Modifier) {
                 .matchParentSize()
                 .graphicsLayer {
                     translationY = -120f
-                }.scale(.9f)
+                }
+                .scale(.9f)
         )
         //endregion
     }

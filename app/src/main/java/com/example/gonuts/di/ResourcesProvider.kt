@@ -1,7 +1,6 @@
 package com.example.gonuts.di
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import dagger.hilt.android.qualifiers.ApplicationContext
