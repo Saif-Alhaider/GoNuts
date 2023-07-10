@@ -26,20 +26,18 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.gonuts.R
 import com.example.gonuts.ui.common.composables.AddToFavouriteIcon
 import com.example.gonuts.ui.screen.doughnut_details.composables.RoundedSquareCard
 import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.theme.GoNutsTheme
 
+
 @Composable
 fun DoughnutDetailsContent() {
     Box(modifier = Modifier.fillMaxSize()) {
-
         //region upper
         Column(
             Modifier
@@ -103,34 +101,16 @@ fun DoughnutDetailsContent() {
                     horizontalArrangement = Arrangement.spacedBy(20.dp),
                     modifier = Modifier.padding(top = 20.dp)
                 ) {
-                    RoundedSquareCard(color = Color.White) {
-                        Text(
-                            text = "-",
-                            style = MaterialTheme.typography.titleLarge.copy(fontSize = 32.sp),
-                            color = Color.Black,
-                            textAlign = TextAlign.Center,
-                        )
-                    }
-                    RoundedSquareCard(color = Color.White) {
-                        Text(
-                            text = "1",
-                            style = MaterialTheme.typography.labelLarge,
-                            color = Color.Black,
-                            textAlign = TextAlign.Center,
-                        )
-                    }
-                    RoundedSquareCard(color = Color.Black) {
-                        Text(
-                            text = "+",
-                            style = MaterialTheme.typography.labelLarge,
-                            color = Color.White,
-                            textAlign = TextAlign.Center,
-                        )
-                    }
+                    RoundedSquareCard(color = Color.White, onClick = {
+                        //decrement
+                    }, text = "-")
+                    RoundedSquareCard(color = Color.White, text = "1")
+                    RoundedSquareCard(color = Color.Black, onClick = {
+                        //increment
+                    }, text = "+", textColor = Color.White)
                 }
                 //endregion
-
-                Box(Modifier.weight(1f),) {
+                Box(Modifier.weight(1f)) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -149,7 +129,7 @@ fun DoughnutDetailsContent() {
                                 .buttonColors(GoNutsCustomColors.current.primary),
                             modifier = Modifier.fillMaxWidth()
 
-                            ) {
+                        ) {
                             Text(
                                 text = "Add to Cart",
                                 color = Color.White,
