@@ -15,14 +15,14 @@ import com.example.gonuts.R
 import com.example.gonuts.ui.theme.GoNutsCustomColors
 
 @Composable
-fun AddToFavouriteIcon(shape: Shape = CircleShape) {
+fun AddToFavouriteIcon(modifier: Modifier = Modifier, shape: Shape = CircleShape) {
     Image(
         painter = painterResource(id = R.drawable.heart_add_to_favourite),
         contentDescription = "add to favourite icon",
-        modifier = Modifier
+        modifier = modifier
             .clip(shape)
             .clickable { }
             .background(GoNutsCustomColors.current.background)
-            .padding(8.dp)
+            .padding(12.dp)
     )
 }
