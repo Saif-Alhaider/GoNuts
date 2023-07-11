@@ -7,14 +7,3 @@ data class HomeUiState(
     val todayOffers: List<DoughnutUiState> = emptyList(),
     val doughnuts: List<DoughnutUiState> = emptyList()
 )
-
-fun Doughnut.mapToUi(): DoughnutUiState {
-    return DoughnutUiState(
-        name = this.name,
-        description = this.description,
-        originalPrice = this.originalPrice,
-        discountedPrice = this.discountedPrice,
-        imageResource = this.imageResource,
-        backgroundColor = this.backgroundColor,
-    )
-}
