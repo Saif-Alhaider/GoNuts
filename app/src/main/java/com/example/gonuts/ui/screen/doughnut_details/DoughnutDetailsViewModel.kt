@@ -2,8 +2,8 @@ package com.example.gonuts.ui.screen.doughnut_details
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.example.gonuts.ui.common.state.mapToUi
 import com.example.gonuts.ui.screen.home.AmountSelectorListener
-import com.example.gonuts.ui.screen.home.mapToUi
 import com.example.gonuts.usecase.GetDoughnutByNameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
