@@ -1,7 +1,9 @@
-package com.example.gonuts.ui.screen.home
+package com.example.gonuts.ui.screen.home.composables
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,16 +26,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.gonuts.R
-import com.example.gonuts.ui.common.state.DoughnutUiState
 import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.theme.GoNutsTheme
 
 @Composable
-fun DoughnutMiniCard(doughnut: DoughnutUiState, modifier: Modifier = Modifier) {
+fun DoughnutMiniCard(
+    modifier: Modifier = Modifier,
+    doughnutName: String,
+    doughnutPrice: Double,
+    @DrawableRes doughnutImageRes: Int,
+    onClick: () -> Unit
+) {
     Box(
         modifier = modifier
             .size(180.dp)
-
     ) {
         //region card info
         Column(
@@ -47,11 +53,12 @@ fun DoughnutMiniCard(doughnut: DoughnutUiState, modifier: Modifier = Modifier) {
                         bottomEnd = 10.dp
                     )
                 )
+                .clickable(onClick = onClick)
                 .fillMaxHeight()
                 .background(color = Color.White), verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = doughnut.name,
+                text = doughnutName,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.labelSmall,
                 color = GoNutsCustomColors.current.onBackground60,
@@ -60,7 +67,7 @@ fun DoughnutMiniCard(doughnut: DoughnutUiState, modifier: Modifier = Modifier) {
                     .padding(top = 50.dp, bottom = 10.dp)
             )
             Text(
-                text = "$${doughnut.discountedPrice}",
+                text = "$$doughnutPrice",
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.labelSmall,
                 color = GoNutsCustomColors.current.primary,
@@ -72,7 +79,7 @@ fun DoughnutMiniCard(doughnut: DoughnutUiState, modifier: Modifier = Modifier) {
         //endregion
         //region doughnut image
         Image(
-            painter = painterResource(id = doughnut.imageResource),
+            painter = painterResource(id = doughnutImageRes),
             contentDescription = "doughnut image",
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -91,11 +98,10 @@ fun DoughnutMiniCard(doughnut: DoughnutUiState, modifier: Modifier = Modifier) {
 fun DoughnutMiniCardPreview() {
     GoNutsTheme {
         DoughnutMiniCard(
-            DoughnutUiState(
-                imageResource = R.drawable.doughnut_chocolate_cherry_drizzle,
-                discountedPrice = 4.5,
-                name = "strawberry falvour"
-            )
+            doughnutName = "Strawberry Flavour",
+            doughnutPrice = 4.5,
+            doughnutImageRes = R.drawable.doughnut_chocolate_cherry_drizzle,
+            onClick = {}
         )
     }
 }
