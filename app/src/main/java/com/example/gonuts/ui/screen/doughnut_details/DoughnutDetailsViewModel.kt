@@ -1,11 +1,10 @@
 package com.example.gonuts.ui.screen.doughnut_details
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.gonuts.ui.screen.home.AmountSelectorListener
 import com.example.gonuts.ui.screen.home.mapToUi
-import com.example.gonuts.usecase.GetDoughnutByName
+import com.example.gonuts.usecase.GetDoughnutByNameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DoughnutDetailsViewModel @Inject constructor(
-    private val getDoughnutByName: GetDoughnutByName,
+    private val getDoughnutByNameUseCase: GetDoughnutByNameUseCase,
     savedStateHandle: SavedStateHandle
 ) :
     ViewModel(), AmountSelectorListener {
@@ -28,7 +27,7 @@ class DoughnutDetailsViewModel @Inject constructor(
     }
 
     private fun getDoughnut() {
-        val doughnut = getDoughnutByName().first { it.name == args.name }
+        val doughnut = getDoughnutByNameUseCase().first { it.name == args.name }
         _state.update { it.copy(doughnut = doughnut.mapToUi()) }
     }
 
