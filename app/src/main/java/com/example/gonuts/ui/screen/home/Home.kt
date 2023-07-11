@@ -48,7 +48,7 @@ fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
     systemUiController.setStatusBarColor(
         color = GoNutsCustomColors.current.primary,
     )
-    systemUiController.setNavigationBarColor(color = Color.Transparent)
+    systemUiController.setNavigationBarColor(color = GoNutsCustomColors.current.background)
     LazyColumn(
         Modifier
             .background(GoNutsCustomColors.current.background)
