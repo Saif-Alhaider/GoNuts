@@ -8,6 +8,7 @@ data class Doughnut(
     val description: String,
     val originalPrice: Double,
     val discountedPrice: Double,
-    @DrawableRes val imageResource: Int,
+    @DrawableRes val frontViewImageResource: Int,
+    @DrawableRes val tiltedViewImageResource: Int,
     val backgroundColor: Color
 )
