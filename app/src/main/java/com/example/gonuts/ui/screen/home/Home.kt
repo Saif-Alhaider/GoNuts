@@ -27,10 +27,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.gonuts.R
 import com.example.gonuts.entity.Doughnut
+import com.example.gonuts.ui.common.state.mapToUi
 import com.example.gonuts.ui.screen.doughnut_details.navigateToDoughnutDetails
 import com.example.gonuts.ui.screen.home.composables.DoughnutCard
+import com.example.gonuts.ui.screen.home.composables.DoughnutMiniCard
 import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.theme.GoNutsTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -41,6 +44,11 @@ fun HomeScreen(navController: NavController) {
 
 @Composable
 fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(
+        color = GoNutsCustomColors.current.primary,
+    )
+    systemUiController.setNavigationBarColor(color = Color.Transparent)
     LazyColumn(
         Modifier
             .background(Color(0xFFFAFAFA))
@@ -109,8 +117,14 @@ fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
                 sectionTitle = "Donuts",
                 spaceByValue = 23.dp,
                 contentPadding = PaddingValues(start = 32.dp, end = 32.dp)
-            ) {
-                DoughnutMiniCard(doughnut = it, modifier = Modifier.padding(top = 20.dp))
+            ) { doughnut ->
+                DoughnutMiniCard(
+                    modifier = Modifier.padding(top = 20.dp),
+                    doughnutName = doughnut.name,
+                    doughnutImageRes = doughnut.tiltedViewImageResource,
+                    onClick = { onClickCard(doughnut.name) },
+                    doughnutPrice = doughnut.discountedPrice
+                )
             }
         }
         //endregion
@@ -126,25 +140,18 @@ fun HomeContentPreview() {
             description = "These Baked Strawberry Donuts are filled with fresh strawberries...",
             originalPrice = 2.99,
             discountedPrice = 2.49,
-            imageResource = R.drawable.doughnut_strawberry_wheel_sprinkles,
-            backgroundColor = Color(0xFFD7E4F6)
+            frontViewImageResource = R.drawable.doughnut_strawberry_wheel_sprinkles,
+            backgroundColor = Color(0xFFD7E4F6),
+            tiltedViewImageResource = R.drawable.doughnut_strawberry_chocolate_drizzle
         ),
         Doughnut(
             name = "Chocolate Glaze",
             description = "Moist and fluffy baked chocolate donuts full of chocolate flavor.",
             originalPrice = 3.49,
             discountedPrice = 2.99,
-            imageResource = R.drawable.doughnut_chocolate_glaze_sprinkles,
-            backgroundColor = Color(0xFFFFC7D0)
-        ),
-        Doughnut(
-            name = "Blueberry Burst",
-            description = "Delicious blueberry-filled doughnut topped with a sweet glaze.",
-            originalPrice = 2.49,
-            discountedPrice = 1.99,
-            imageResource = R.drawable.doughnut_blueberry,
-            backgroundColor = Color(0xFFFFC7F6)
-
+            frontViewImageResource = R.drawable.doughnut_chocolate_glaze_sprinkles,
+            backgroundColor = Color(0xFFFFC7D0),
+            tiltedViewImageResource = R.drawable.doughnut_strawberry_chocolate_drizzle
         ),
     )
     val doughnuts = listOf(
@@ -153,24 +160,27 @@ fun HomeContentPreview() {
             description = "",
             originalPrice = 13.9,
             discountedPrice = 8.7,
-            imageResource = R.drawable.doughnut_chocolate_cherry_drizzle,
-            backgroundColor = Color(0xFFD7E4F6)
+            frontViewImageResource = R.drawable.doughnut_chocolate_glaze_sprinkles,
+            backgroundColor = Color(0xFFD7E4F6),
+            tiltedViewImageResource = R.drawable.doughnut_chocolate_cherry_drizzle
         ),
         Doughnut(
             name = "Strawberry Rain",
             description = "",
             originalPrice = 16.5,
             discountedPrice = 10.0,
-            imageResource = R.drawable.doughnut_strawberry_rain_sprinkles,
-            backgroundColor = Color(0xFFFFC7F6)
+            frontViewImageResource = R.drawable.doughnut_strawberry_wheel_sprinkles,
+            backgroundColor = Color(0xFFFFC7F6),
+            tiltedViewImageResource = R.drawable.doughnut_strawberry_rain_sprinkles
         ),
         Doughnut(
             name = "Strawberry Snow",
             description = "",
             originalPrice = 30.0,
             discountedPrice = 15.6,
-            imageResource = R.drawable.doughnut_strawberry_chocolate_drizzle,
-            backgroundColor = Color(0xFFD7E4F6)
+            frontViewImageResource = R.drawable.doughnut_strawberry_wheel_sprinkles,
+            backgroundColor = Color(0xFFD7E4F6),
+            tiltedViewImageResource = R.drawable.doughnut_strawberry_chocolate_drizzle
         ),
     )
     GoNutsTheme {
