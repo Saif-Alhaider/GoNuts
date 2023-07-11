@@ -1,4 +1,4 @@
-package com.example.gonuts
+package com.example.gonuts.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,11 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
+import androidx.navigation.compose.rememberNavController
+import com.example.gonuts.GoNutsNavGraph
 import com.example.gonuts.ui.theme.GoNutsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,26 +27,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val navController = rememberNavController()
+
                     Box(Modifier.systemBarsPadding()) {
+                        GoNutsNavGraph(navController)
                     }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GoNutsTheme {
-        Greeting("Android")
     }
 }

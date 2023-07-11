@@ -61,7 +61,7 @@ fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .padding(top = 64.dp, start = 16.dp, end = 16.dp)
+                    .padding(top = 24.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth()
             ) {
                 //region info
@@ -100,7 +100,7 @@ fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
                 doughnuts = state.todayOffers,
                 sectionTitle = "Today Offers",
                 spaceByValue = 70.dp,
-                contentPadding = PaddingValues(start = 16.dp, end = 80.dp),
+                contentPadding = PaddingValues(start = 16.dp, end = 95.dp),
             ) { doughnut ->
                 DoughnutCard(
                     onClickCard = { onClickCard(doughnut.name) },

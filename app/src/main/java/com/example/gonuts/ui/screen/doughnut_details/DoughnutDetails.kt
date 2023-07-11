@@ -190,7 +190,7 @@ fun DoughnutDetailsContent(
             painter = painterResource(id = R.drawable.ic_back),
             contentDescription = "back icon",
             modifier = Modifier
-                .padding(35.dp,top=60.dp)
+                .padding(35.dp)
                 .align(Alignment.TopStart)
                 .clickable(onClick = onClickBack)
         )

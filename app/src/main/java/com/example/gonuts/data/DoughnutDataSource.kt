@@ -58,7 +58,7 @@ class DoughnutDataSource @Inject constructor(
     val doughnuts = listOf(
         Doughnut(
             name = "Chocolate Cherry",
-            description = "",
+            description = "Moist and fluffy baked chocolate donuts full of chocolate flavor.",
             originalPrice = 13.9,
             discountedPrice = 8.7,
             frontViewImageResource = resourcesProvider
@@ -69,7 +69,7 @@ class DoughnutDataSource @Inject constructor(
         ),
         Doughnut(
             name = "Strawberry Rain",
-            description = "",
+            description = "Moist and fluffy baked chocolate donuts full of chocolate flavor.",
             originalPrice = 16.5,
             discountedPrice = 10.0,
             frontViewImageResource = resourcesProvider
@@ -80,7 +80,7 @@ class DoughnutDataSource @Inject constructor(
         ),
         Doughnut(
             name = "Strawberry Snow",
-            description = "",
+            description = "Moist and fluffy baked chocolate donuts full of chocolate flavor.",
             originalPrice = 30.0,
             discountedPrice = 15.6,
             frontViewImageResource = resourcesProvider
