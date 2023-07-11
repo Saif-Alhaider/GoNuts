@@ -51,7 +51,7 @@ fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
     systemUiController.setNavigationBarColor(color = Color.Transparent)
     LazyColumn(
         Modifier
-            .background(Color(0xFFFAFAFA))
+            .background(GoNutsCustomColors.current.background)
             .fillMaxSize(),
         contentPadding = PaddingValues(vertical = 16.dp)
     ) {

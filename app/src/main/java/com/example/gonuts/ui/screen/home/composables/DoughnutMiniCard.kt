@@ -13,12 +13,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
@@ -37,12 +39,13 @@ fun DoughnutMiniCard(
     @DrawableRes doughnutImageRes: Int,
     onClick: () -> Unit
 ) {
+
     Box(
         modifier = modifier
             .size(180.dp)
     ) {
         //region card info
-        Column(
+        Surface(
             Modifier
                 .padding(top = 60.dp)
                 .clip(
@@ -55,26 +58,40 @@ fun DoughnutMiniCard(
                 )
                 .clickable(onClick = onClick)
                 .fillMaxHeight()
-                .background(color = Color.White), verticalArrangement = Arrangement.Center
+                .background(color = Color.White)
+                .shadow(
+                    elevation = 16.dp,
+                    shape = RoundedCornerShape(
+                        topStart = 20.dp,
+                        topEnd = 20.dp,
+                        bottomStart = 10.dp,
+                        bottomEnd = 10.dp
+                    ),
+                    spotColor = Color.Black.copy(alpha = .1f)
+                )
         ) {
-            Text(
-                text = doughnutName,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.labelSmall,
-                color = GoNutsCustomColors.current.onBackground60,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 50.dp, bottom = 10.dp)
-            )
-            Text(
-                text = "$$doughnutPrice",
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.labelSmall,
-                color = GoNutsCustomColors.current.primary,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 20.dp)
-            )
+            Column(
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = doughnutName,
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = GoNutsCustomColors.current.onBackground60,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 50.dp, bottom = 10.dp)
+                )
+                Text(
+                    text = "$$doughnutPrice",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = GoNutsCustomColors.current.primary,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 20.dp)
+                )
+            }
         }
         //endregion
         //region doughnut image
