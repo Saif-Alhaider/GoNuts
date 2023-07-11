@@ -23,13 +23,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.gonuts.R
+import com.example.gonuts.ui.screen.home.navigateToHome
 import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.theme.GoNutsTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun WelcomeContent() {
+fun WelcomeScreen(navController: NavController) {
+    WelcomeContent(onClickButton = navController::navigateToHome)
+}
+
+@Composable
+fun WelcomeContent(onClickButton: () -> Unit) {
     val systemUiController = rememberSystemUiController()
     systemUiController.setStatusBarColor(
         color = GoNutsCustomColors.current.primaryBackground,
@@ -113,7 +121,7 @@ fun WelcomeContent() {
             )
             Box(Modifier.weight(1f)) {
                 Button(
-                    onClick = {},
+                    onClick = onClickButton,
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White,
                         contentColor = Color.Black
@@ -141,6 +149,6 @@ fun WelcomeContent() {
 @Preview(showSystemUi = true)
 @Composable
 fun WelcomeContentPreview() {
-    GoNutsTheme { WelcomeContent() }
+    GoNutsTheme { WelcomeScreen(navController = rememberNavController()) }
 
 }
