@@ -68,7 +68,7 @@ fun DoughnutDetailsContent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = state.doughnut.imageResource),
+                painter = painterResource(id = state.doughnut.frontViewImageResource),
                 contentDescription = "dougnut image",
                 modifier = Modifier
                     .scale(5f)
@@ -143,9 +143,10 @@ fun DoughnutDetailsContent(
                             .fillMaxSize()
                     ) {
                         Text(
-                            text = "£${state.amount * 16}",
+                            text = "£${(state.amount * state.doughnut.discountedPrice).toString().format(".%1f")}",
                             style = MaterialTheme.typography.titleLarge,
-                            color = GoNutsCustomColors.current.onBackground,modifier=Modifier.width(90.dp),
+                            color = GoNutsCustomColors.current.onBackground,
+                            modifier = Modifier.width(90.dp),
                             overflow = TextOverflow.Ellipsis,
                             maxLines = 1
                         )
@@ -189,8 +190,8 @@ fun DoughnutDetailsContent(
             painter = painterResource(id = R.drawable.ic_back),
             contentDescription = "back icon",
             modifier = Modifier
+                .padding(35.dp,top=60.dp)
                 .align(Alignment.TopStart)
-                .padding(35.dp)
                 .clickable(onClick = onClickBack)
         )
         //endregion
@@ -208,7 +209,6 @@ fun DoughnutDetailsContentPreview() {
                     description = "These Baked Strawberry Donuts are filled with fresh strawberries...",
                     originalPrice = 2.99,
                     discountedPrice = 2.49,
-                    imageResource = R.drawable.doughnut_strawberry_wheel_sprinkles,
                     backgroundColor = Color(0xFFD7E4F6)
                 )
             ),
