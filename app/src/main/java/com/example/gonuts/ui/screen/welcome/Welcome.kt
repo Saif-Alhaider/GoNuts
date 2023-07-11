@@ -1,5 +1,11 @@
 package com.example.gonuts.ui.screen.welcome
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,11 +20,14 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,6 +51,16 @@ fun WelcomeContent(onClickButton: () -> Unit) {
     systemUiController.setStatusBarColor(
         color = GoNutsCustomColors.current.primaryBackground,
     )
+    val infiniteTransition = rememberInfiniteTransition()
+    val elevateUp by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(6000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        )
+    )
+    val travelDistance = with(LocalDensity.current) { 30.dp.toPx() }
     systemUiController.setNavigationBarColor(color = GoNutsCustomColors.current.primaryBackground)
     Box(
         modifier = Modifier
@@ -62,6 +81,7 @@ fun WelcomeContent(onClickButton: () -> Unit) {
                     .scale(1.6f, 1.5f)
                     .rotate(16.18f)
                     .offset(y = 20.dp, x = 20.dp)
+                    .graphicsLayer { translationY = elevateUp * travelDistance }
             )
 
             Image(
@@ -71,6 +91,11 @@ fun WelcomeContent(onClickButton: () -> Unit) {
                     .align(Alignment.BottomEnd)
                     .offset(x = 90.dp, y = 160.dp)
                     .scale(.9f)
+                    .graphicsLayer {
+                        translationY =
+                            ((elevateUp * travelDistance) / .9).toFloat()
+                        rotationZ = -((elevateUp * travelDistance) / 4)
+                    }
             )
             Image(
                 painter = painterResource(id = R.drawable.doughnut_strawberry_sprinkles_drizzle),
@@ -79,6 +104,11 @@ fun WelcomeContent(onClickButton: () -> Unit) {
                     .align(Alignment.TopEnd)
                     .offset(x = (-40).dp, y = (-15).dp)
                     .scale(.85f)
+                    .graphicsLayer {
+                        translationY =
+                            ((elevateUp * travelDistance) / .9).toFloat()
+                        rotationZ = ((elevateUp * travelDistance) / 4)
+                    }
             )
 
             Image(
@@ -89,6 +119,11 @@ fun WelcomeContent(onClickButton: () -> Unit) {
                     .rotate(65f)
                     .align(Alignment.BottomStart)
                     .offset(y = 40.dp, x = 30.dp)
+                    .graphicsLayer {
+                        translationY =
+                            ((elevateUp * travelDistance) / .9).toFloat()
+                        rotationZ = -((elevateUp * travelDistance) / 4)
+                    }
             )
             Image(
                 painter = painterResource(id = R.drawable.doughnut_purple_sprinkles),
@@ -97,6 +132,11 @@ fun WelcomeContent(onClickButton: () -> Unit) {
                     .align(Alignment.TopStart)
                     .scale(.85f)
                     .offset(x = (-25).dp, y = (-50).dp)
+                    .graphicsLayer {
+                        translationY =
+                            ((elevateUp * travelDistance) / .9).toFloat()
+                        rotationZ = ((elevateUp * travelDistance) / 4)
+                    }
             )
         }
         //endregion
