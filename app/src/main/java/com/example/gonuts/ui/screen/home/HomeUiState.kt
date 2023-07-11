@@ -14,6 +14,7 @@ fun Doughnut.mapToUi(): DoughnutUiState {
         description = this.description,
         originalPrice = this.originalPrice,
         discountedPrice = this.discountedPrice,
-        imageResource = this.imageResource
+        imageResource = this.imageResource,
+        backgroundColor = this.backgroundColor,
     )
 }

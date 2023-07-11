@@ -1,7 +1,8 @@
-package com.example.gonuts.ui.screen.home
+package com.example.gonuts.ui.screen.home.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -34,11 +36,12 @@ import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.theme.GoNutsTheme
 
 @Composable
-fun DoughnutCard(doughnut: DoughnutUiState) {
+fun DoughnutCard(doughnut: DoughnutUiState, onClickCard: () -> Unit,color:Color) {
     Box(
         contentAlignment = Alignment.CenterEnd, modifier = Modifier
             .height(325.dp)
             .width(200.dp)
+
     ) {
         //region card content
         Column(
@@ -47,7 +50,8 @@ fun DoughnutCard(doughnut: DoughnutUiState) {
             modifier = Modifier
                 .matchParentSize()
                 .clip(RoundedCornerShape(20.dp))
-                .background(GoNutsCustomColors.current.onPrimary)
+                .background(color)
+                .clickable(onClick = onClickCard)
                 .padding(16.dp)
         ) {
             AddToFavouriteIcon()
@@ -119,7 +123,8 @@ fun DoughnutCardPreview() {
                 originalPrice = 2.99,
                 discountedPrice = 2.49,
                 imageResource = R.drawable.doughnut_strawberry_wheel_sprinkles
-            )
+            ),
+            onClickCard = {}, color = GoNutsCustomColors.current.onPrimary
         )
     }
 }
