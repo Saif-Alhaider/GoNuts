@@ -61,7 +61,7 @@ fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .padding(top = 64.dp, start = 32.dp, end = 32.dp)
+                    .padding(top = 64.dp, start = 16.dp, end = 16.dp)
                     .fillMaxWidth()
             ) {
                 //region info
@@ -78,6 +78,7 @@ fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
                     )
                 }
                 //endregion
+
                 //region search button
                 Image(
                     painter = painterResource(id = R.drawable.ic_search),
@@ -99,7 +100,7 @@ fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
                 doughnuts = state.todayOffers,
                 sectionTitle = "Today Offers",
                 spaceByValue = 70.dp,
-                contentPadding = PaddingValues(start = 32.dp, end = 80.dp),
+                contentPadding = PaddingValues(start = 16.dp, end = 80.dp),
             ) { doughnut ->
                 DoughnutCard(
                     onClickCard = { onClickCard(doughnut.name) },
@@ -116,7 +117,7 @@ fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
                 doughnuts = state.doughnuts,
                 sectionTitle = "Donuts",
                 spaceByValue = 23.dp,
-                contentPadding = PaddingValues(start = 32.dp, end = 32.dp)
+                contentPadding = PaddingValues(horizontal = 16.dp)
             ) { doughnut ->
                 DoughnutMiniCard(
                     modifier = Modifier.padding(top = 20.dp),
