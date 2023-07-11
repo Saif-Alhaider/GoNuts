@@ -1,5 +1,8 @@
 package com.example.gonuts.ui.screen.doughnut_details
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -18,9 +21,9 @@ fun NavGraphBuilder.doughnutDetailsRoute(navController: NavController) {
         "$ROUTE/{${DoughnutDetailsArgs.NAME_ARG}}",
         arguments = listOf(navArgument("name") { NavType.StringType })
     ) {
-        DoughnutDetailsScreen(
+        Box(Modifier.systemBarsPadding()){DoughnutDetailsScreen(
             navController
-        )
+        )}
     }
 }
 
