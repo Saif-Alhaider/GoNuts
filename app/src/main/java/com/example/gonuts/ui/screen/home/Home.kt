@@ -36,11 +36,11 @@ import com.example.gonuts.ui.theme.GoNutsTheme
 fun HomeScreen(navController: NavController) {
     val viewModel: HomeViewModel = hiltViewModel()
     val state = viewModel.state.collectAsState()
-    HomeContent(onClickCard = { navController.navigateToDoughnutDetails() }, state = state.value)
+    HomeContent(onClickCard = { navController.navigateToDoughnutDetails(it) }, state = state.value)
 }
 
 @Composable
-fun HomeContent(onClickCard: () -> Unit, state: HomeUiState) {
+fun HomeContent(onClickCard: (String) -> Unit, state: HomeUiState) {
     LazyColumn(
         Modifier
             .background(Color(0xFFFAFAFA))
@@ -94,7 +94,7 @@ fun HomeContent(onClickCard: () -> Unit, state: HomeUiState) {
                 contentPadding = PaddingValues(start = 32.dp, end = 80.dp),
             ) { doughnut ->
                 DoughnutCard(
-                    onClickCard = onClickCard,
+                    onClickCard = { onClickCard(doughnut.name) },
                     doughnut = doughnut,
                     color = doughnut.backgroundColor,
                 )
