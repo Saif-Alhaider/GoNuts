@@ -1,6 +1,7 @@
 package com.example.gonuts.ui.screen.home
 
 import androidx.lifecycle.ViewModel
+import com.example.gonuts.ui.common.state.mapToUi
 import com.example.gonuts.usecase.GetDoughnutsUseCase
 import com.example.gonuts.usecase.GetTodayOffersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
