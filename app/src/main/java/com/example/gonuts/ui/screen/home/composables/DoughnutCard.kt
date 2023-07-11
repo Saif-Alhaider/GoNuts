@@ -96,7 +96,7 @@ fun DoughnutCard(doughnut: DoughnutUiState, onClickCard: () -> Unit,color:Color)
 
         //region doughnut image
         Image(
-            painter = painterResource(id = doughnut.imageResource),
+            painter = painterResource(id = doughnut.frontViewImageResource),
             contentDescription = "Doughnut",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
@@ -122,7 +122,7 @@ fun DoughnutCardPreview() {
                 description = "These Baked Strawberry Donuts are filled with fresh strawberries...",
                 originalPrice = 2.99,
                 discountedPrice = 2.49,
-                imageResource = R.drawable.doughnut_strawberry_wheel_sprinkles
+                frontViewImageResource = R.drawable.doughnut_strawberry_wheel_sprinkles
             ),
             onClickCard = {}, color = GoNutsCustomColors.current.onPrimary
         )
