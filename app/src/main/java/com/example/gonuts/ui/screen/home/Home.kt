@@ -24,13 +24,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.gonuts.R
 import com.example.gonuts.entity.Doughnut
 import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.theme.GoNutsTheme
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     val viewModel: HomeViewModel = hiltViewModel()
     val state = viewModel.state.collectAsState()
     HomeContent(state = state.value)

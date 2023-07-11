@@ -11,7 +11,7 @@ import com.example.gonuts.ui.screen.welcome.welcomeRoute
 
 @Composable
 fun GoNutsNavGraph(navHostController: NavHostController) {
-    NavHost(navController = navHostController, startDestination = "welcome") {
+    NavHost(navController = navHostController, startDestination = Screen.Welcome.route) {
         welcomeRoute(navHostController)
         homeRoute(navHostController)
     }
