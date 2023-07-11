@@ -22,7 +22,7 @@ val onBackground60Dark = Color.White.copy(alpha = .6f)
 data class CustomColorsPalette(
     val primary: Color = Color.Unspecified,
     val onPrimary: Color = Color.Unspecified,
-    val primaryBackground: androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color.Unspecified,
+    val primaryBackground: Color = Color.Unspecified,
     val subtitle: Color = Color.Unspecified,
     val background: Color = Color.Unspecified,
     val onBackground: Color = Color.Unspecified,
