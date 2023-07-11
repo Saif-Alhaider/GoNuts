@@ -79,7 +79,6 @@ fun DoughnutDetailsContent(
         //region body
         Box(
             Modifier
-
                 .fillMaxWidth()
                 .fillMaxHeight(.68f)
                 .align(Alignment.BottomCenter)
@@ -143,10 +142,10 @@ fun DoughnutDetailsContent(
                             .fillMaxSize()
                     ) {
                         Text(
-                            text = "£${(state.amount * state.doughnut.discountedPrice).toString().format(".%1f")}",
+                            text = "£${String.format("%.1f",(state.amount * state.doughnut.discountedPrice))}",
                             style = MaterialTheme.typography.titleLarge,
                             color = GoNutsCustomColors.current.onBackground,
-                            modifier = Modifier.width(90.dp),
+                            modifier = Modifier.width(95.dp),
                             overflow = TextOverflow.Ellipsis,
                             maxLines = 1
                         )
