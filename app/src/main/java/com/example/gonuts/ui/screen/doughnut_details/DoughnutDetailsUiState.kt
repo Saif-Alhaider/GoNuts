@@ -19,6 +19,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,34 +28,47 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.gonuts.R
 import com.example.gonuts.ui.common.composables.AddToFavouriteIcon
+import com.example.gonuts.ui.common.state.DoughnutUiState
 import com.example.gonuts.ui.screen.doughnut_details.composables.RoundedSquareCard
+import com.example.gonuts.ui.screen.home.AmountSelectorListener
 import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.theme.GoNutsTheme
 
 @Composable
 fun DoughnutDetailsScreen(navController: NavController) {
-    DoughnutDetailsContent(onClickBack = navController::popBackStack)
+    val viewModel: DoughnutDetailsViewModel = hiltViewModel()
+    DoughnutDetailsContent(
+        onClickBack = navController::popBackStack,
+        state = viewModel.state.collectAsState().value,
+        amountSelectorListener = viewModel
+    )
 }
 
 @Composable
-fun DoughnutDetailsContent(onClickBack: () -> Unit) {
+fun DoughnutDetailsContent(
+    onClickBack: () -> Unit,
+    state: DoughnutDetailsUiState,
+    amountSelectorListener: AmountSelectorListener
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         //region upper
         Column(
             Modifier
-                .background(GoNutsCustomColors.current.subtitle)
+                .background(state.doughnut.backgroundColor)
                 .fillMaxWidth()
                 .fillMaxHeight(.5f),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.doughnut_strawberry_wheel_sprinkles),
+                painter = painterResource(id = state.doughnut.imageResource),
                 contentDescription = "dougnut image",
                 modifier = Modifier
                     .scale(5f)
@@ -80,7 +94,7 @@ fun DoughnutDetailsContent(onClickBack: () -> Unit) {
                     .padding(top = 35.dp, start = 40.dp, end = 40.dp)
             ) {
                 Text(
-                    text = "Strawberry Wheel",
+                    text = state.doughnut.name,
                     style = MaterialTheme.typography.titleLarge,
                     color = GoNutsCustomColors.current.primary
                 )
@@ -91,7 +105,7 @@ fun DoughnutDetailsContent(onClickBack: () -> Unit) {
                     modifier = Modifier.padding(top = 32.dp)
                 )
                 Text(
-                    text = "These soft, cake-like Strawberry Frosted Donuts feature fresh strawberries and a delicious fresh strawberry glaze frosting. Pretty enough for company and the perfect treat to satisfy your sweet tooth.",
+                    text = state.doughnut.description,
                     style = MaterialTheme.typography.bodyMedium,
                     color = GoNutsCustomColors.current.onBackground60,
                     modifier = Modifier.padding(top = 16.dp)
@@ -107,13 +121,18 @@ fun DoughnutDetailsContent(onClickBack: () -> Unit) {
                     horizontalArrangement = Arrangement.spacedBy(20.dp),
                     modifier = Modifier.padding(top = 20.dp)
                 ) {
-                    RoundedSquareCard(color = Color.White, onClick = {
-                        //decrement
-                    }, text = "-")
-                    RoundedSquareCard(color = Color.White, text = "1")
-                    RoundedSquareCard(color = Color.Black, onClick = {
-                        //increment
-                    }, text = "+", textColor = Color.White)
+                    RoundedSquareCard(
+                        color = Color.White,
+                        onClick = amountSelectorListener::onClickDecrement,
+                        text = "-"
+                    )
+                    RoundedSquareCard(color = Color.White, text = state.amount.toString())
+                    RoundedSquareCard(
+                        color = Color.Black,
+                        onClick = amountSelectorListener::onClickIncrement,
+                        text = "+",
+                        textColor = Color.White
+                    )
                 }
                 //endregion
                 Box(Modifier.weight(1f)) {
@@ -124,11 +143,13 @@ fun DoughnutDetailsContent(onClickBack: () -> Unit) {
                             .fillMaxSize()
                     ) {
                         Text(
-                            text = "£16",
+                            text = "£${state.amount * 16}",
                             style = MaterialTheme.typography.titleLarge,
-                            color = GoNutsCustomColors.current.onBackground
+                            color = GoNutsCustomColors.current.onBackground,modifier=Modifier.width(90.dp),
+                            overflow = TextOverflow.Ellipsis,
+                            maxLines = 1
                         )
-                        Spacer(modifier = Modifier.width(16.dp))
+                        Spacer(modifier = Modifier.width(22.dp))
                         Button(
                             onClick = { /*TODO*/ },
                             colors = ButtonDefaults
@@ -179,5 +200,27 @@ fun DoughnutDetailsContent(onClickBack: () -> Unit) {
 @Preview
 @Composable
 fun DoughnutDetailsContentPreview() {
-    GoNutsTheme { DoughnutDetailsContent(onClickBack = {}) }
+    GoNutsTheme {
+        DoughnutDetailsContent(
+            onClickBack = {}, state = DoughnutDetailsUiState(
+                doughnut = DoughnutUiState(
+                    name = "Strawberry Wheel",
+                    description = "These Baked Strawberry Donuts are filled with fresh strawberries...",
+                    originalPrice = 2.99,
+                    discountedPrice = 2.49,
+                    imageResource = R.drawable.doughnut_strawberry_wheel_sprinkles,
+                    backgroundColor = Color(0xFFD7E4F6)
+                )
+            ),
+            amountSelectorListener = object : AmountSelectorListener {
+                override fun onClickIncrement() {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onClickDecrement() {
+                    TODO("Not yet implemented")
+                }
+            }
+        )
+    }
 }
