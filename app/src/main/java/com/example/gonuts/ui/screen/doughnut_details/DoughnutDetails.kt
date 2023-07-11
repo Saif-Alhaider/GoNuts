@@ -2,6 +2,7 @@ package com.example.gonuts.ui.screen.doughnut_details
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,15 +29,20 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.gonuts.R
 import com.example.gonuts.ui.common.composables.AddToFavouriteIcon
 import com.example.gonuts.ui.screen.doughnut_details.composables.RoundedSquareCard
 import com.example.gonuts.ui.theme.GoNutsCustomColors
 import com.example.gonuts.ui.theme.GoNutsTheme
 
+@Composable
+fun DoughnutDetailsScreen(navController: NavController) {
+    DoughnutDetailsContent(onClickBack = navController::popBackStack)
+}
 
 @Composable
-fun DoughnutDetailsContent() {
+fun DoughnutDetailsContent(onClickBack: () -> Unit) {
     Box(modifier = Modifier.fillMaxSize()) {
         //region upper
         Column(
@@ -164,6 +170,7 @@ fun DoughnutDetailsContent() {
             modifier = Modifier
                 .align(Alignment.TopStart)
                 .padding(35.dp)
+                .clickable(onClick = onClickBack)
         )
         //endregion
     }
@@ -172,5 +179,5 @@ fun DoughnutDetailsContent() {
 @Preview
 @Composable
 fun DoughnutDetailsContentPreview() {
-    GoNutsTheme { DoughnutDetailsContent() }
+    GoNutsTheme { DoughnutDetailsContent(onClickBack = {}) }
 }
