@@ -27,7 +27,7 @@ class DoughnutDetailsViewModel @Inject constructor(
     }
 
     private fun getDoughnut() {
-        val doughnut = getDoughnutByNameUseCase().first { it.name == args.name }
+        val doughnut = getDoughnutByNameUseCase(args.name)
         _state.update { it.copy(doughnut = doughnut.mapToUi()) }
     }
 
