@@ -29,7 +29,7 @@ fun DoughnutSection(
             text = sectionTitle,
             style = MaterialTheme.typography.labelMedium,
             color = GoNutsCustomColors.current.onBackground,
-            modifier = modifier.padding(top = 32.dp, start = 32.dp)
+            modifier = Modifier.padding(top = 32.dp, start = 16.dp)
         )
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(spaceByValue),
