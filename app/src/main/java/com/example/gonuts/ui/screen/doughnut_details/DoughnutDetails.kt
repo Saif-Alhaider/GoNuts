@@ -3,6 +3,7 @@ package com.example.gonuts.ui.screen.doughnut_details
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -142,7 +144,12 @@ fun DoughnutDetailsContent(
                             .fillMaxSize()
                     ) {
                         Text(
-                            text = "£${String.format("%.1f",(state.amount * state.doughnut.discountedPrice))}",
+                            text = "£${
+                                String.format(
+                                    "%.1f",
+                                    (state.amount * state.doughnut.discountedPrice)
+                                )
+                            }",
                             style = MaterialTheme.typography.titleLarge,
                             color = GoNutsCustomColors.current.onBackground,
                             modifier = Modifier.width(95.dp),
@@ -191,7 +198,10 @@ fun DoughnutDetailsContent(
             modifier = Modifier
                 .padding(35.dp)
                 .align(Alignment.TopStart)
-                .clickable(onClick = onClickBack)
+                .clickable(onClick = onClickBack,
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() }
+                )
         )
         //endregion
     }
